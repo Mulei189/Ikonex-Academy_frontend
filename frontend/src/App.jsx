@@ -9,6 +9,7 @@ import Subjects from "./pages/Subjects";
 import Assessments from "./pages/Assessments";
 import Results from "./pages/Results";
 import Reports from "./pages/Reports";
+import ClassStreamDetails from "./pages/classStreamDetails";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/subjects" element={<Subjects />} />
           <Route path="/assessments" element={<Assessments />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/class-streams/:id" element={<ClassStreamDetails />}/>
           <Route path="/reports" element={<Reports />} />
         </Routes>
       </main>
