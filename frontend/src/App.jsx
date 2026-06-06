@@ -10,7 +10,8 @@ import Assessments from "./pages/Assessments";
 import Results from "./pages/Results";
 import Reports from "./pages/Reports";
 import ClassStreamDetails from "./pages/classStreamDetails";
-
+import StudentDetails from "./pages/StudentDetails";
+import SubjectDetails from "./pages/SubjectDetails";
 export default function App() {
   return (
     <div className="app">
@@ -20,11 +21,13 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/class-streams" element={<ClassStreams />} />
+          <Route path="/class-streams/:id" element={<ClassStreamDetails />}/>
           <Route path="/students" element={<Students />} />
+          <Route path="/students/:admissionNumber" element={<StudentDetails />} />
           <Route path="/subjects" element={<Subjects />} />
+          <Route path="/subjects/:subjectCode" element={<SubjectDetails />} />
           <Route path="/assessments" element={<Assessments />} />
           <Route path="/results" element={<Results />} />
-          <Route path="/class-streams/:id" element={<ClassStreamDetails />}/>
           <Route path="/reports" element={<Reports />} />
         </Routes>
       </main>

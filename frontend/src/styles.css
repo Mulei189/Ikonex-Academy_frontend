@@ -126,3 +126,33 @@ a {
   background: #f1f5f9;
   text-align: left;
 }
+
+.report-card {
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px
+    rgba(0, 0, 0, 0.1);
+}
+
+.report-card h2 {
+  margin-bottom: 15px;
+}
+
+.report-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.report-card button {
+  padding: 10px 16px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

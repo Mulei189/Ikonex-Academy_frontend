@@ -14,8 +14,7 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h2>IKONEX</h2>
-        <p>Academy SMS</p>
+        <h2>IKONEX ACADEMY</h2>
       </div>
 
       <nav>

@@ -27,5 +27,5 @@ export const getClassStreamById = async (id) => {
     `/class-streams/${id}`
   );
 
-  return response.data;
+  return response.data.data;
 };
