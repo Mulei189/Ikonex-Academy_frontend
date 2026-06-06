@@ -1,78 +1,42 @@
-
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
+  const menuItems = [
+    { path: "/", label: "Dashboard" },
+    { path: "/class-streams", label: "Class Streams" },
+    { path: "/students", label: "Students" },
+    { path: "/subjects", label: "Subjects" },
+    { path: "/assessments", label: "Assessments" },
+    { path: "/results", label: "Results" },
+    { path: "/reports", label: "Reports" },
+  ];
+
   return (
-    <div className="sidebar">
-      <h2>IKONEX ACADEMY</h2>
+    <aside className="sidebar">
+      <div className="sidebar-header">
+        <h2>IKONEX</h2>
+        <p>Academy SMS</p>
+      </div>
 
       <nav>
-        <ul>
-          <li><NavLink
-                to="/"
+        <ul className="menu">
+          {menuItems.map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                end={item.path === "/"}
                 className={({ isActive }) =>
-                    isActive ? "active-link" : ""
+                  isActive
+                    ? "menu-link active-link"
+                    : "menu-link"
                 }
-                >
-                Dasboard
-                </NavLink>
-          </li>
-          <li><NavLink
-                to="/class-streams"
-                className={({ isActive }) =>
-                    isActive ? "active-link" : ""
-                }
-                >
-                Streams
-                </NavLink>
-          </li>
-          <li><NavLink
-                    to="/students"
-                    className={({ isActive }) =>
-                        isActive ? "active-link" : ""
-                    }
-                >   
-                Students
-                </NavLink>
-          </li>
-          <li><NavLink
-                    to="/subjects"
-                    className={({ isActive }) =>
-                        isActive ? "active-link" : ""
-                    }
-                >   
-                Subjects
-                </NavLink>
-          </li>
-          <li><NavLink
-                    to="/assessments"
-                    className={({ isActive }) =>
-                        isActive ? "active-link" : ""
-                    }
-                >   
-                Assessments
-                </NavLink>
-          </li>
-          <li><NavLink
-                    to="/results"
-                    className={({ isActive }) =>
-                        isActive ? "active-link" : ""
-                    }
-                >   
-                Results
-                </NavLink>
-          </li>
-          <li><NavLink
-                    to="/reports"
-                    className={({ isActive }) =>
-                        isActive ? "active-link" : ""
-                    }
-                >   
-                Reports
-            </NavLink>
-          </li>
+              >
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
-    </div>
+    </aside>
   );
 }

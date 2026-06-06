@@ -1,3 +1,9 @@
 export default function Subjects() {
-  return <h1>Subjects</h1>;
+  return (
+    <>
+      <h1 className="page-title">
+        Subjects
+      </h1>
+    </>
+  );
 }

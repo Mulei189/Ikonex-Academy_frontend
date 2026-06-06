@@ -1,3 +1,9 @@
 export default function Students() {
-  return <h1>Students</h1>;
+  return (
+    <>
+      <h1 className="page-title">
+        Students
+      </h1>
+    </>
+  );
 }

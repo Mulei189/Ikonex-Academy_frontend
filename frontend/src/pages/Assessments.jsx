@@ -1,3 +1,9 @@
 export default function Assessments() {
-  return <h1>Assessments</h1>;
+  return (
+    <>
+      <h1 className="page-title">
+        Assessments
+      </h1>
+    </>
+  );
 }

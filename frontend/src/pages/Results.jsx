@@ -1,3 +1,9 @@
 export default function Results() {
-  return <h1>Results</h1>;
+  return (
+    <>
+      <h1 className="page-title">
+        Results
+      </h1>
+    </>
+  );
 }
