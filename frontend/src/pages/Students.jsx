@@ -354,7 +354,7 @@ export default function Students() {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
           <h2 style={{ fontSize: "20px", fontWeight: "600", margin: 0, color: "#1f2937" }}>
-            All Students ({students.length})
+            All Students ({students?.length || 0})
           </h2>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <label style={{ fontSize: "14px", fontWeight: "500", color: "#374151" }}>
@@ -386,7 +386,7 @@ export default function Students() {
           <div style={{ textAlign: "center", padding: "40px" }}>
             <p style={{ fontSize: "16px", color: "#6b7280" }}>Loading...</p>
           </div>
-        ) : students.length === 0 ? (
+        ) : (students?.length ?? 0) === 0 ? (
           <div style={{ textAlign: "center", padding: "40px" }}>
             <p style={{ fontSize: "16px", color: "#6b7280", fontStyle: "italic" }}>
               No students found. Register one above.

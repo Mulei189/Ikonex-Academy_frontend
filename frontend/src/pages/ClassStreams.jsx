@@ -196,14 +196,14 @@ export default function ClassStreams() {
         }}
       >
         <h2 style={{ fontSize: "20px", fontWeight: "600", margin: "0 0 20px 0", color: "#1f2937" }}>
-          All Class Streams ({streams.length})
+          All Class Streams ({Array.isArray(streams) ? streams.length : 0})
         </h2>
 
         {loading ? (
           <div style={{ textAlign: "center", padding: "40px" }}>
             <p style={{ fontSize: "16px", color: "#6b7280" }}>Loading...</p>
           </div>
-        ) : streams.length === 0 ? (
+        ) : (streams?.length ?? 0) === 0 ? (
           <div style={{ textAlign: "center", padding: "40px" }}>
             <p style={{ fontSize: "16px", color: "#6b7280", fontStyle: "italic" }}>
               No class streams found. Add one above.
