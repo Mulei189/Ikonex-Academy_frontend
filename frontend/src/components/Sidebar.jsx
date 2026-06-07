@@ -12,7 +12,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar" style={{ overflow: 'hidden', position: 'fixed', height: '100vh' }}>
       <div className="sidebar-header">
         <h2>IKONEX ACADEMY</h2>
       </div>

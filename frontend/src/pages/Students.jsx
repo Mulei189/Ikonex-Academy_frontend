@@ -17,6 +17,8 @@ export default function Students() {
   const [submitting, setSubmitting] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
   const [filterStream, setFilterStream] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   const [formData, setFormData] = useState({
     admissionNumber: "",
@@ -25,6 +27,11 @@ export default function Students() {
     gender: "",
     classStreamId: "",
   });
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentStudents = students.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(students.length / itemsPerPage);
 
   const getStreamCode = (streamId) => {
     const stream = classStreams.find((s) => s.id === streamId);
@@ -68,6 +75,7 @@ export default function Students() {
     } else {
       loadStudents();
     }
+    setCurrentPage(1);
   }, [filterStream]);
 
   const loadFilteredStudents = async () => {
@@ -393,94 +401,127 @@ export default function Students() {
             </p>
           </div>
         ) : (
-          <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
-              <thead>
-                <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
-                  <th style={{ padding: "12px 16px", textAlign: "left", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
-                    Admission Number
-                  </th>
-                  <th style={{ padding: "12px 16px", textAlign: "left", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
-                    Name
-                  </th>
-                  <th style={{ padding: "12px 16px", textAlign: "left", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
-                    Gender
-                  </th>
-                  <th style={{ padding: "12px 16px", textAlign: "left", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
-                    Class Stream
-                  </th>
-                  <th style={{ padding: "12px 16px", textAlign: "right", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {(students || []).map((student) => (
-                  <tr
-                    key={student.id}
-                    style={{ borderBottom: "1px solid #e5e7eb", transition: "backgroundColor 0.2s" }}
-                    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#f9fafb")}
-                    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-                  >
-                    <td style={{ padding: "16px", fontSize: "14px", color: "#1f2937", fontWeight: "500" }}>
-                      {student.admissionNumber}
-                    </td>
-                    <td style={{ padding: "16px", fontSize: "14px", color: "#1f2937" }}>
-                      {student.firstName} {student.lastName}
-                    </td>
-                    <td style={{ padding: "16px", fontSize: "14px", color: "#6b7280" }}>
-                      {student.gender}
-                    </td>
-                    <td style={{ padding: "16px", fontSize: "14px", color: "#1f2937" }}>
-                      {getStreamName(student.classStreamId)} ({getStreamCode(student.classStreamId)})
-                    </td>
-                    <td style={{ padding: "16px", textAlign: "right" }}>
-                      <Link
-                        to={`/students/${student.admissionNumber}`}
-                        style={{
-                          display: "inline-block",
-                          padding: "8px 16px",
-                          fontSize: "13px",
-                          fontWeight: "500",
-                          color: "#3b82f6",
-                          backgroundColor: "#eff6ff",
-                          border: "none",
-                          borderRadius: "6px",
-                          cursor: "pointer",
-                          textDecoration: "none",
-                          marginRight: "8px",
-                          transition: "background-color 0.2s",
-                        }}
-                        onMouseOver={(e) => (e.target.style.backgroundColor = "#dbeafe")}
-                        onMouseOut={(e) => (e.target.style.backgroundColor = "#eff6ff")}
-                      >
-                        View
-                      </Link>
-                      <button
-                        onClick={() => handleDelete(student.admissionNumber)}
-                        disabled={deletingId === student.admissionNumber}
-                        style={{
-                          padding: "8px 16px",
-                          fontSize: "13px",
-                          fontWeight: "500",
-                          color: deletingId === student.admissionNumber ? "#9ca3af" : "#dc2626",
-                          backgroundColor: deletingId === student.admissionNumber ? "#f3f4f6" : "#fef2f2",
-                          border: "none",
-                          borderRadius: "6px",
-                          cursor: deletingId === student.admissionNumber ? "not-allowed" : "pointer",
-                          transition: "background-color 0.2s",
-                        }}
-                        onMouseOver={(e) => deletingId !== student.admissionNumber && (e.target.style.backgroundColor = "#fee2e2")}
-                        onMouseOut={(e) => deletingId !== student.admissionNumber && (e.target.style.backgroundColor = "#fef2f2")}
-                      >
-                        {deletingId === student.admissionNumber ? "Deleting..." : "Delete"}
-                      </button>
-                    </td>
+          <>
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
+                    <th style={{ padding: "12px 16px", textAlign: "left", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
+                      Admission Number
+                    </th>
+                    <th style={{ padding: "12px 16px", textAlign: "left", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
+                      Name
+                    </th>
+                    <th style={{ padding: "12px 16px", textAlign: "left", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
+                      Gender
+                    </th>
+                    <th style={{ padding: "12px 16px", textAlign: "left", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
+                      Class Stream
+                    </th>
+                    <th style={{ padding: "12px 16px", textAlign: "right", fontSize: "14px", fontWeight: "600", color: "#374151" }}>
+                      Actions
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {(currentStudents || []).map((student) => (
+                    <tr
+                      key={student.id}
+                      style={{ borderBottom: "1px solid #e5e7eb", transition: "backgroundColor 0.2s" }}
+                      onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#f9fafb")}
+                      onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                    >
+                      <td style={{ padding: "16px", fontSize: "14px", color: "#1f2937", fontWeight: "500" }}>
+                        {student.admissionNumber}
+                      </td>
+                      <td style={{ padding: "16px", fontSize: "14px", color: "#1f2937" }}>
+                        {student.firstName} {student.lastName}
+                      </td>
+                      <td style={{ padding: "16px", fontSize: "14px", color: "#6b7280" }}>
+                        {student.gender}
+                      </td>
+                      <td style={{ padding: "16px", fontSize: "14px", color: "#1f2937" }}>
+                        {getStreamName(student.classStreamId)} ({getStreamCode(student.classStreamId)})
+                      </td>
+                      <td style={{ padding: "16px", textAlign: "right" }}>
+                        <Link
+                          to={`/students/${student.admissionNumber}`}
+                          style={{
+                            display: "inline-block",
+                            padding: "8px 16px",
+                            fontSize: "13px",
+                            fontWeight: "500",
+                            color: "#3b82f6",
+                            backgroundColor: "#eff6ff",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: "pointer",
+                            textDecoration: "none",
+                            marginRight: "8px",
+                            transition: "background-color 0.2s",
+                          }}
+                          onMouseOver={(e) => (e.target.style.backgroundColor = "#dbeafe")}
+                          onMouseOut={(e) => (e.target.style.backgroundColor = "#eff6ff")}
+                        >
+                          View
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(student.admissionNumber)}
+                          disabled={deletingId === student.admissionNumber}
+                          style={{
+                            padding: "8px 16px",
+                            fontSize: "13px",
+                            fontWeight: "500",
+                            color: deletingId === student.admissionNumber ? "#9ca3af" : "#dc2626",
+                            backgroundColor: deletingId === student.admissionNumber ? "#f3f4f6" : "#fef2f2",
+                            border: "none",
+                            borderRadius: "6px",
+                            cursor: deletingId === student.admissionNumber ? "not-allowed" : "pointer",
+                            transition: "background-color 0.2s",
+                          }}
+                          onMouseOver={(e) => deletingId !== student.admissionNumber && (e.target.style.backgroundColor = "#fee2e2")}
+                          onMouseOut={(e) => deletingId !== student.admissionNumber && (e.target.style.backgroundColor = "#fef2f2")}
+                        >
+                          {deletingId === student.admissionNumber ? "Deleting..." : "Delete"}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "8px",
+                marginTop: "20px",
+              }}
+            >
+              {[...Array(totalPages)].map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentPage(index + 1)}
+                  style={{
+                    padding: "8px 12px",
+                    background:
+                      currentPage === index + 1
+                        ? "#6d28d9"
+                        : "#ffffff",
+                    color:
+                      currentPage === index + 1
+                        ? "#ffffff"
+                        : "#000000",
+                    border: "1px solid #ddd",
+                    borderRadius: "6px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -17,7 +17,7 @@ export default function App() {
     <div className="app">
       <Sidebar />
 
-      <main className="main">
+      <main className="main" style={{ marginLeft: "260px" }}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/class-streams" element={<ClassStreams />} />
