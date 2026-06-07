@@ -174,7 +174,7 @@ export default function SubjectDetails() {
               Assigned to Class Streams
             </p>
             <p style={{ fontSize: "28px", color: "#1f2937", margin: 0, fontWeight: "700" }}>
-              {assignedStreams.length}
+              {assignedStreams?.length || 0}
             </p>
           </div>
         </div>
@@ -183,9 +183,9 @@ export default function SubjectDetails() {
           <h3 style={{ fontSize: "20px", fontWeight: "600", margin: "0 0 15px 0", color: "#1f2937" }}>
             Assigned Class Streams
           </h3>
-          {assignedStreams.length > 0 ? (
+          {(assignedStreams?.length ?? 0) > 0 ? (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "12px" }}>
-              {assignedStreams.map((stream) => (
+              {(assignedStreams || []).map((stream) => (
                 <div
                   key={stream.id}
                   style={{

@@ -231,7 +231,7 @@ export default function Subjects() {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
           <h2 style={{ fontSize: "20px", fontWeight: "600", margin: 0, color: "#1f2937" }}>
-            All Subjects ({subjects.length})
+            All Subjects ({subjects?.length || 0})
           </h2>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <label style={{ fontSize: "14px", fontWeight: "500", color: "#374151" }}>
@@ -250,7 +250,7 @@ export default function Subjects() {
               }}
             >
               <option value="">All Streams</option>
-              {classStreams.map((stream) => (
+              {(classStreams || []).map((stream) => (
                 <option key={stream.id} value={stream.id}>
                   {stream.name} ({stream.streamCode})
                 </option>
@@ -263,7 +263,7 @@ export default function Subjects() {
           <div style={{ textAlign: "center", padding: "40px" }}>
             <p style={{ fontSize: "16px", color: "#6b7280" }}>Loading...</p>
           </div>
-        ) : subjects.length === 0 ? (
+        ) : (subjects?.length ?? 0) === 0 ? (
           <div style={{ textAlign: "center", padding: "40px" }}>
             <p style={{ fontSize: "16px", color: "#6b7280", fontStyle: "italic" }}>
               No subjects found. Create one above.
@@ -289,7 +289,7 @@ export default function Subjects() {
                 </tr>
               </thead>
               <tbody>
-                {subjects.map((subject) => (
+                {(subjects || []).map((subject) => (
                   <tr
                     key={subject.id}
                     style={{ borderBottom: "1px solid #e5e7eb", transition: "backgroundColor 0.2s" }}

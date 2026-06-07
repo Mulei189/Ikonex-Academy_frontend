@@ -410,7 +410,7 @@ export default function Assessments() {
                     }}
                   >
                     <option value="">Select Student</option>
-                    {students.map((student) => (
+                    {(students || []).map((student) => (
                       <option key={student.id} value={student.admissionNumber}>
                         {student.firstName} {student.lastName} ({student.admissionNumber})
                       </option>
@@ -441,7 +441,7 @@ export default function Assessments() {
                     <option value="">
                       {formData.admissionNumber ? "Select Subject" : "Select a student first"}
                     </option>
-                    {subjects.map((subject) => (
+                    {(subjects || []).map((subject) => (
                       <option key={subject.id} value={subject.code}>
                         {subject.name} ({subject.code})
                       </option>
@@ -467,7 +467,7 @@ export default function Assessments() {
                       backgroundColor: "white",
                     }}
                   >
-                    {assessmentTypes.map((type) => (
+                    {(assessmentTypes || []).map((type) => (
                       <option key={type} value={type}>
                         {type}
                       </option>
@@ -579,7 +579,7 @@ export default function Assessments() {
                   }}
                 >
                   <option value="">Select Student</option>
-                  {students.map((student) => (
+                  {(students || []).map((student) => (
                     <option key={student.id} value={student.admissionNumber}>
                       {student.firstName} {student.lastName} ({student.admissionNumber})
                     </option>
@@ -609,7 +609,7 @@ export default function Assessments() {
                   <option value="">
                     {viewFormData.admissionNumber ? "All Subjects" : "Select a student first"}
                   </option>
-                  {subjects.map((subject) => (
+                  {(subjects || []).map((subject) => (
                     <option key={subject.id} value={subject.code}>
                       {subject.name} ({subject.code})
                     </option>
@@ -637,7 +637,7 @@ export default function Assessments() {
             </form>
           </div>
 
-          {performanceData && performanceData.length > 0 && (
+          {performanceData && (performanceData?.length ?? 0) > 0 && (
             <div
               style={{
                 backgroundColor: "#fff",
@@ -650,11 +650,10 @@ export default function Assessments() {
               <h3 style={{ fontSize: "20px", fontWeight: "600", margin: "0 0 20px 0", color: "#333" }}>
                 Student Performance Results
               </h3>
-              
+
               {/* Check if data is grouped by subject (new format) or flat (old format) */}
-              {performanceData[0]?.assessments ? (
-                // New format with weighted mean
-                performanceData.map((subjectData, index) => (
+              {performanceData && performanceData[0]?.assessments ? (
+                (performanceData || []).map((subjectData, index) => (
                   <div key={index} style={{ marginBottom: "30px", paddingBottom: "30px", borderBottom: index < performanceData.length - 1 ? "1px solid #eee" : "none" }}>
                     <div style={{ marginBottom: "16px" }}>
                       <h4 style={{ fontSize: "18px", fontWeight: "600", margin: "0 0 8px 0", color: "#333" }}>
@@ -696,7 +695,7 @@ export default function Assessments() {
                         </tr>
                       </thead>
                       <tbody>
-                        {subjectData.assessments.map((assessment, idx) => (
+                        {(subjectData?.assessments || []).map((assessment, idx) => (
                           <tr key={idx} style={{ borderBottom: "1px solid #eee", backgroundColor: idx % 2 === 0 ? "#fafafa" : "white" }}>
                             <td style={{ padding: "12px" }}>{assessment.assessmentType}</td>
                             <td style={{ padding: "12px", fontWeight: "500" }}>{assessment.score}</td>
@@ -746,7 +745,6 @@ export default function Assessments() {
                   </div>
                 ))
               ) : (
-                // Old format (flat list)
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
                   <thead>
                     <tr style={{ backgroundColor: "#f5f5f5" }}>
@@ -759,7 +757,7 @@ export default function Assessments() {
                     </tr>
                   </thead>
                   <tbody>
-                    {performanceData.map((item, index) => (
+                    {(performanceData || []).map((item, index) => (
                       <tr key={index} style={{ borderBottom: "1px solid #eee", backgroundColor: index % 2 === 0 ? "#fafafa" : "white" }}>
                         <td style={{ padding: "12px" }}>{item.subjectName || item.subjectCode || "-"}</td>
                         <td style={{ padding: "12px" }}>{item.assessmentType}</td>
@@ -809,7 +807,7 @@ export default function Assessments() {
             </div>
           )}
 
-          {performanceData && performanceData.length === 0 && (
+          {performanceData && (performanceData?.length ?? 0) === 0 && (
             <div
               style={{
                 backgroundColor: "#fff",
@@ -922,7 +920,7 @@ export default function Assessments() {
             </form>
           </div>
 
-          {performanceData && performanceData.length > 0 && (
+          {performanceData && (performanceData?.length ?? 0) > 0 && (
             <div
               style={{
                 backgroundColor: "#fff",
@@ -1097,7 +1095,7 @@ export default function Assessments() {
             </div>
           )}
 
-          {performanceData && performanceData.length === 0 && (
+          {performanceData && (performanceData?.length ?? 0) === 0 && (
             <div
               style={{
                 backgroundColor: "#fff",
@@ -1179,7 +1177,7 @@ export default function Assessments() {
             </form>
           </div>
 
-          {performanceData && performanceData.length > 0 && (
+          {performanceData && (performanceData?.length ?? 0) > 0 && (
             <div
               style={{
                 backgroundColor: "#fff",
@@ -1255,7 +1253,7 @@ export default function Assessments() {
             </div>
           )}
 
-          {performanceData && performanceData.length === 0 && (
+          {performanceData && (performanceData?.length ?? 0) === 0 && (
             <div
               style={{
                 backgroundColor: "#fff",

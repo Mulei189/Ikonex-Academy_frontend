@@ -229,7 +229,7 @@ export default function ClassStreams() {
                 </tr>
               </thead>
               <tbody>
-                {streams.map((stream) => (
+                {(streams || []).map((stream) => (
                   <tr
                     key={stream.id}
                     style={{ borderBottom: "1px solid #e5e7eb", transition: "backgroundColor 0.2s" }}

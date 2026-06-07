@@ -309,7 +309,7 @@ export default function Students() {
               }}
             >
               <option value="">Select Class Stream</option>
-              {classStreams.map((stream) => (
+              {(classStreams || []).map((stream) => (
                 <option key={stream.id} value={stream.id}>
                   {stream.name}
                 </option>
@@ -373,7 +373,7 @@ export default function Students() {
               }}
             >
               <option value="">All Streams</option>
-              {classStreams.map((stream) => (
+              {(classStreams || []).map((stream) => (
                 <option key={stream.id} value={stream.id}>
                   {stream.name}
                 </option>
@@ -415,7 +415,7 @@ export default function Students() {
                 </tr>
               </thead>
               <tbody>
-                {students.map((student) => (
+                {(students || []).map((student) => (
                   <tr
                     key={student.id}
                     style={{ borderBottom: "1px solid #e5e7eb", transition: "backgroundColor 0.2s" }}

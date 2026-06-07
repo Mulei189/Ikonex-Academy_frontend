@@ -254,7 +254,7 @@ export default function Results() {
                 required
               >
                 <option value="">Select Student</option>
-                {students.map((student) => (
+                {(students || []).map((student) => (
                   <option key={student.id} value={student.admissionNumber}>
                     {student.firstName} {student.lastName} ({student.admissionNumber})
                   </option>
@@ -285,7 +285,7 @@ export default function Results() {
                     </tr>
                   </thead>
                   <tbody>
-                    {resultData.subjects.map((subject, index) => (
+                    {(resultData?.subjects || []).map((subject, index) => (
                       <tr key={index}>
                         <td>{subject.subjectName}</td>
                         <td>{subject.subjectCode}</td>
@@ -323,7 +323,7 @@ export default function Results() {
                 required
               >
                 <option value="">Select Class Stream</option>
-                {classStreams.map((stream) => (
+                {(classStreams || []).map((stream) => (
                   <option key={stream.id} value={stream.id}>
                     {stream.name} ({stream.streamCode})
                   </option>
@@ -334,7 +334,7 @@ export default function Results() {
             <button type="submit">View Results</button>
           </form>
 
-          {resultData && resultData.length > 0 && (
+          {resultData && (resultData?.length ?? 0) > 0 && (
             <div className="table-wrapper">
               <h3>Class Results</h3>
               <table className="table">
@@ -348,7 +348,7 @@ export default function Results() {
                   </tr>
                 </thead>
                 <tbody>
-                  {resultData.map((result, index) => (
+                  {(resultData || []).map((result, index) => (
                     <tr key={index}>
                       <td>{result.student.firstName} {result.student.lastName}</td>
                       <td>{result.student.admissionNumber}</td>
@@ -362,7 +362,7 @@ export default function Results() {
             </div>
           )}
 
-          {resultData && resultData.length === 0 && (
+          {resultData && (resultData?.length ?? 0) === 0 && (
             <p className="no-data">No results found for this class</p>
           )}
         </>
@@ -383,7 +383,7 @@ export default function Results() {
                 required
               >
                 <option value="">Select Class Stream</option>
-                {classStreams.map((stream) => (
+                {(classStreams || []).map((stream) => (
                   <option key={stream.id} value={stream.id}>
                     {stream.name} ({stream.streamCode})
                   </option>
@@ -394,7 +394,7 @@ export default function Results() {
             <button type="submit">View Positions</button>
           </form>
 
-          {resultData && resultData.length > 0 && (
+          {resultData && (resultData?.length ?? 0) > 0 && (
             <div className="table-wrapper">
               <h3>Class Rankings</h3>
               <table className="table">
@@ -409,7 +409,7 @@ export default function Results() {
                   </tr>
                 </thead>
                 <tbody>
-                  {resultData.map((student, index) => (
+                  {(resultData || []).map((student, index) => (
                     <tr key={index}>
                       <td className="position-cell">{student.position}</td>
                       <td>{student.firstName} {student.lastName}</td>
@@ -424,7 +424,7 @@ export default function Results() {
             </div>
           )}
 
-          {resultData && resultData.length === 0 && (
+          {resultData && (resultData?.length ?? 0) === 0 && (
             <p className="no-data">No positions found for this class</p>
           )}
         </>
@@ -445,7 +445,7 @@ export default function Results() {
                 required
               >
                 <option value="">Select Class Stream</option>
-                {classStreams.map((stream) => (
+                {(classStreams || []).map((stream) => (
                   <option key={stream.id} value={stream.id}>
                     {stream.name} ({stream.streamCode})
                   </option>
@@ -465,7 +465,7 @@ export default function Results() {
                 <option value="">
                   {viewFormData.classStreamId ? "Select Subject" : "Select a class stream first"}
                 </option>
-                {subjects.map((subject) => (
+                {(subjects || []).map((subject) => (
                   <option key={subject.id} value={subject.code}>
                     {subject.name} ({subject.code})
                   </option>
@@ -476,7 +476,7 @@ export default function Results() {
             <button type="submit">View Positions</button>
           </form>
 
-          {resultData && resultData.length > 0 && (
+          {resultData && (resultData?.length ?? 0) > 0 && (
             <div className="table-wrapper">
               <h3>Subject Rankings</h3>
               <table className="table">
@@ -489,7 +489,7 @@ export default function Results() {
                   </tr>
                 </thead>
                 <tbody>
-                  {resultData.map((student, index) => (
+                  {(resultData || []).map((student, index) => (
                     <tr key={index}>
                       <td className="position-cell">{student.position}</td>
                       <td>{student.firstName} {student.lastName}</td>
@@ -502,7 +502,7 @@ export default function Results() {
             </div>
           )}
 
-          {resultData && resultData.length === 0 && (
+          {resultData && (resultData?.length ?? 0) === 0 && (
             <p className="no-data">No positions found for this subject</p>
           )}
         </>
@@ -523,7 +523,7 @@ export default function Results() {
                 required
               >
                 <option value="">Select Student</option>
-                {students.map((student) => (
+                {(students || []).map((student) => (
                   <option key={student.id} value={student.admissionNumber}>
                     {student.firstName} {student.lastName} ({student.admissionNumber})
                   </option>

@@ -210,7 +210,7 @@ export default function StudentDetails() {
               Number of Assessments
             </p>
             <p style={{ fontSize: "28px", color: "#1f2937", margin: 0, fontWeight: "700" }}>
-              {performance.length}
+              {performance?.length || 0}
             </p>
           </div>
         </div>
@@ -219,9 +219,9 @@ export default function StudentDetails() {
           <h3 style={{ fontSize: "20px", fontWeight: "600", margin: "0 0 15px 0", color: "#1f2937" }}>
             Assessment Performance
           </h3>
-          {performance.length > 0 ? (
+          {(performance?.length ?? 0) > 0 ? (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "12px" }}>
-              {performance.map((item) => (
+              {(performance || []).map((item) => (
                 <div
                   key={item.id}
                   style={{

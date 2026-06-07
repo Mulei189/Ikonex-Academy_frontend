@@ -197,7 +197,7 @@ export default function ClassStreamDetails() {
               Number of Students
             </p>
             <p style={{ fontSize: "28px", color: "#1f2937", margin: 0, fontWeight: "700" }}>
-              {students.length}
+              {students?.length || 0}
             </p>
           </div>
 
@@ -213,7 +213,7 @@ export default function ClassStreamDetails() {
               Number of Subjects
             </p>
             <p style={{ fontSize: "28px", color: "#1f2937", margin: 0, fontWeight: "700" }}>
-              {subjects.length}
+              {subjects?.length || 0}
             </p>
           </div>
         </div>
@@ -255,8 +255,8 @@ export default function ClassStreamDetails() {
                   }}
                 >
                   <option value="">Select a subject...</option>
-                  {allSubjects
-                    .filter((subject) => !subjects.some((s) => s.code === subject.code))
+                  {(allSubjects || [])
+                    .filter((subject) => !(subjects || []).some((s) => s.code === subject.code))
                     .map((subject) => (
                       <option key={subject.id} value={subject.code}>
                         {subject.name} ({subject.code})
@@ -287,9 +287,9 @@ export default function ClassStreamDetails() {
             </form>
           </div>
 
-          {subjects.length > 0 ? (
+          {(subjects?.length ?? 0) > 0 ? (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "12px" }}>
-              {subjects.map((subject) => (
+              {(subjects || []).map((subject) => (
                 <div
                   key={subject.id}
                   style={{
